@@ -29,6 +29,13 @@
       "@phala/helloworld-app": [
         "../../packages/helloworld-app/src"
       ],
+      "@phala/tarzanmultiplier-app/*": [
+        "../../packages/tarzanmultiplier-app/src/*"
+      ],
+      "@phala/tarzanmultiplier-app": [
+        "../../packages/tarzanmultiplier-app/src"
+      ],
+       
       "@phala/runtime/*": [
         "../../packages/runtime/src/*"
       ],
