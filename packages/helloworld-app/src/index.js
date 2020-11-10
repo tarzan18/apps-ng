@@ -22,7 +22,9 @@ const ButtonWrapper = styled.div`
  */
 const AppHeader = () => (
   <Container>
-    <h1>Hello World!</h1>
+    <h1>Hello Phala World !!! by tarzan18</h1>
+    <h3>Hackathon Hello World! by Polkadot</h3>
+    <h2>Multiply 2 Numbers And Add it to Multiply Counter</h2>
   </Container>
 )
 
@@ -32,7 +34,8 @@ const AppHeader = () => (
 const AppBody = observer(() => {
   const { appRuntime, helloworldApp } = useStore();
   const [, setToast] = useToasts()
-  const { state: inc, bindings } = useInput('1')
+  const { state: inc, bindings } = useInput('100')
+  const { state:inc2, binding } = useInput('5')
 
   /**
    * Updates the counter by querying the helloworld contract
@@ -68,6 +71,20 @@ const AppBody = observer(() => {
     }
   }, [inc])
 
+  const incrementCommandPayload2 = useMemo(() => {
+    const num = parseInt(inc2)
+    if (isNaN(num) || inc2 <= 0) {
+      return undefined
+    } else {
+      return {
+        Increment: {
+          value: num
+        }
+      }
+    }
+  }, [inc2])
+
+
   return (
     <Container>
       <section>
@@ -84,11 +101,15 @@ const AppBody = observer(() => {
       </section>
       <Spacer y={1}/>
 
-      <h3>Increment Counter</h3>
+      <h3>Multiply 2 Numbers</h3>
       <section>
         <div>
-          <Input label="By" {...bindings} />
+          <Input label="First Number" {...bindings} />
         </div>
+	<div> 
+	  <Input label="Second Number" {...binding}/>
+	</div>
+
         <ButtonWrapper>
           {/**  
             * PushCommandButton is the easy way to send confidential contract txs.
@@ -98,9 +119,10 @@ const AppBody = observer(() => {
               // tx arguments
               contractId={CONTRACT_HELLOWORLD}
               payload={incrementCommandPayload}
+	      payload={incrementCommandPayload2}
               // display messages
-              modalTitle='HelloWorld.Increament()'
-              modalSubtitle={`Increment the counter by ${inc}`}
+              modalTitle='ARE YOU SURE TO SUBMIT WORK???'
+              modalSubtitle={`WORK =  ${inc} MULTIPLY BY  ${inc2}`}
               onSuccessMsg='Tx succeeded'
               // button appearance
               buttonType='secondaryLight'
